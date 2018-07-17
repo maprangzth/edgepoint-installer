@@ -1,2 +1,4 @@
 ---
+- name: Setup NTPd
+  include_tasks: NTPd.yml
 

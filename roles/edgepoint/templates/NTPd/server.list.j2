@@ -1,0 +1,3 @@
+{% for time_server in ntpd_server %}
+server {{ time_server }} iburst
+{% endfor %}

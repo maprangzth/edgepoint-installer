@@ -1,0 +1,3 @@
+{% for restriction in ntpd_restriction %}
+restrict {{ restriction.network }} mask {{ restriction.netmask }} nomodify notrap
+{% endfor %}
