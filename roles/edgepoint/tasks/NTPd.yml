@@ -1,0 +1,50 @@
+---
+- name: Set timezone to "{{ timezone }}" 
+  timezone:
+    name: "{{ timezone }}"
+  when: timezone is defined
+
+- name: Ensure Chrony is not installed
+  yum:
+    name: chrony
+    state: absent
+
+- name: Ensure NTPd is installed
+  yum:
+    name: ntp
+    state: present
+
+- name: Ensure NTPd is enabled and running
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
+
+- name: Ensure directory '/etc/ntp/conf/' is created
+  file: 
+    path: /etc/ntp/conf
+    state: directory
+    mode: 0755
+
+- name: Deploy server.list
+  template:
+      src: NTPd/server.list.j2
+      dest: /etc/ntp/conf/server.list
+      mode: 0644
+  notify: Restart NTPd
+
+- name: Deploy restriction.list
+  template:
+      src: NTPd/restriction.list.j2
+      dest: /etc/ntp/conf/restriction.list
+      mode: 0644
+  when: ntpd_allowed_restriction and ntpd_restriction is defined
+  notify: Restart NTPd
+
+- name: Deploy ntp.conf
+  template:
+    src: NTPd/ntp.conf.j2
+    dest: /etc/ntp.conf
+    mode: 0644
+  notify: Restart NTPd
+

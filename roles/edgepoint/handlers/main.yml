@@ -1,2 +1,13 @@
 ---
+- name: Start NTPd
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
+
+- name: Restart NTPd
+  service:
+    name: ntpd
+    state: restarted
+    enabled: yes
 
