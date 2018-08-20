@@ -1,2 +1,11 @@
 ---
-
+timezone: Asia/Bangkok
+ntpd_server:
+    - time1.nimt.or.th
+    - time2.nimt.or.th
+    - time3.nimt.or.th
+    - time.navy.mi.th
+    - clock.nectec.or.th
+ntpd_restriction_allowed: true
+ntpd_restriction:
+    - { network: '172.16.1.0', netmask: '255.255.255.0' }

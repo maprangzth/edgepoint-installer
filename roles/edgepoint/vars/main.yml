@@ -1,9 +1,1 @@
 ---
-timezone: Asia/Bangkok
-ntpd_server:
-    - time1.nimt.or.th
-    - time2.nimt.or.th
-ntpd_allowed_restriction: yes
-ntpd_restriction:
-    - { network: '172.16.1.0', netmask: '255.255.255.0' }
-

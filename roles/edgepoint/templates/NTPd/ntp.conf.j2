@@ -15,7 +15,7 @@ restrict ::1
 
 # Hosts on local network are less restricted.
 #restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
-{% if ntpd_allowed_restriction and ntpd_restriction is defined %}
+{% if ntpd_restriction_allowed and ntpd_restriction is defined %}
 includefile /etc/ntp/conf/restriction.list
 {% endif %}
 
